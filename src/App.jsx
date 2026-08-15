@@ -8,26 +8,66 @@ POKEMON_DECK:
   {
     id: 'charizard'
     name: 'Charizard'
+    sprite: '/image/path.gif'
 
   }
 
 APP
+  States: score (number)
+          bestScore (number)
+          gameState (playing, hasWon, hasLost)
+          loading (starts true)
+      useEffect: use localStorage to save bestScore
+      (dependency: bestScore)
+      if loading: return loading screen
+      if hasWon: display win screen, then on clicking play again, display Card Section
+      if hasLost: display Card Section
+
   > Score Section
-    States: score
-            bestScore
+      props: score, bestScore
   > Card Section
-    States: cards
-            SelectedIds
-    Functions: getCard
-  > Card Container
-    States: 
+      props: score, gameState, preloadedDeck, onLoaded
+      States: cards (array of objects with pokemon data)
+              SelectedIds (array of ids)
+      useEffect:
+              async function to call preload deck and assign to cards
+              call onLoaded()
+              (no dependency: runs once)
+      fetchPokemonDeck: return an object with data (id, name, sprite) to assign to cards
+      shuffle(cards):
+        takes an array of cards and return them reshuffled
+      deal(cards): deal cards on the screen in the order they appear in the array
+      handleWin():
+        update bestScore if needed
+        show win screen
+        on clicking play again,
+        reset selectedIds 
+        setCards(shuffle(cards))
+      handleLose():
+        update bestScore  if needed
+        reset selectedIds 
+        setCards(shuffle(cards))
+      handleClick:
+              props: newId 
+                Update SelectedIds with newId
+                if nb of Ids match number of cards > handleWin()
+                if newId exists in SelectedIds > handleLose()
+      return: map all cards
+  > Card
+      Props: pokemon, delay
+      Components:
+              Card Container
+              Pokemon Name
+              Pokemon Sprite 
+              Card Frame
+      style: handle animation using delay
+      return: one card
   > 
 
 
 
 
 */
-
 
 function App() {
   return (
