@@ -67,7 +67,7 @@ function App() {
     Number(localStorage.getItem('bestScore')) || 0,
   );
 
-  // Possible states: loading, isPlaying, hasWon, hasLost
+  // Possible states: isLoading, isPlaying, hasWon, hasLost
   const [gameState, setGameState] = useState('loading');
 
   useEffect(() => {
@@ -76,12 +76,24 @@ function App() {
 
   return (
     <div>
-      <div className="score-section">
-        <h1>Pokemon Memory Game</h1>
-        <div>{score}</div>
-        <div>{bestScore}</div>
-      </div>
-      <div className="card-section"></div>
+      <header>Pokemon Memory Game</header>
+
+      {gameState === 'isLoading' && (
+        <div className="loading-container">
+          <div className="loading-animation" />
+          <div className="loading-text">Loading...</div>
+        </div>
+      )}
+
+      {gameState === 'isPlaying' && (
+        <main>
+          <div className="score-section">
+            <div>{score}</div>
+            <div>{bestScore}</div>
+          </div>
+          <div className="card-section"></div>
+        </main>
+      )}
     </div>
   );
 }
