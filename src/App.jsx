@@ -3,20 +3,10 @@ The goal of the game is to click all cards one after the other.
 You lose if you click the same card twice.
 Upon clicking a card, all cards reshuffle.
 
-Global variable:
-POKEMON_DECK: 
-  {
-    id: 'charizard'
-    name: 'Charizard'
-    sprite: '/image/path.gif'
-
-  }
-
 APP
   States: score (number)
           bestScore (number)
           gameState (playing, hasWon, hasLost)
-          loading (starts true)
       useEffect: use localStorage to save bestScore
       (dependency: bestScore)
       if loading: return loading screen
@@ -69,10 +59,29 @@ APP
 
 */
 
+import { useEffect, useState } from 'react';
+
 function App() {
+  const [score, setScore] = useState(0);
+  const [bestScore, setbestScore] = useState(
+    Number(localStorage.getItem('bestScore')) || 0,
+  );
+
+  // Possible states: loading, isPlaying, hasWon, hasLost
+  const [gameState, setGameState] = useState('loading');
+
+  useEffect(() => {
+    localStorage.setItem('bestScore', bestScore);
+  }, [bestScore]);
+
   return (
     <div>
-      <h1>Blank React Project</h1>
+      <div className="score-section">
+        <h1>Pokemon Memory Game</h1>
+        <div>{score}</div>
+        <div>{bestScore}</div>
+      </div>
+      <div className="card-section"></div>
     </div>
   );
 }
