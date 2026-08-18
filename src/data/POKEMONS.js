@@ -1,4 +1,4 @@
-export const POKEMON_DECK = [
+export const POKEMONS = [
   'pikachu',
   'charizard',
   'bulbasaur',

@@ -60,19 +60,30 @@ APP
 */
 
 import { useEffect, useState } from 'react';
+import { fetchPokemonDeck } from '../utils/fetchPokemonDeck';
+import { preloadImages } from '../utils/preloadImages';
 
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setbestScore] = useState(
     Number(localStorage.getItem('bestScore')) || 0,
   );
-
-  // Possible states: isLoading, isPlaying, hasWon, hasLost
+  const [deck, setDeck] = useState([]);
   const [gameState, setGameState] = useState('loading');
 
   useEffect(() => {
     localStorage.setItem('bestScore', bestScore);
   }, [bestScore]);
+
+  useEffect(() => {
+    async function loadGame() {
+      const deckData = await fetchPokemonDeck();
+      await preloadImages(deckData);
+      setDeck(deckData);
+      setGameState('isPlaying');
+    }
+    loadGame();
+  }, []);
 
   return (
     <div>
@@ -91,7 +102,11 @@ function App() {
             <div>{score}</div>
             <div>{bestScore}</div>
           </div>
-          <div className="card-section"></div>
+          <div
+            className="card-section"
+            score={score}
+            deck={deck}
+          ></div>
         </main>
       )}
     </div>
