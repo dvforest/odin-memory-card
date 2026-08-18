@@ -9,6 +9,7 @@ export async function fetchPokemonDeck() {
       return {
         id: data.id,
         name: data.name,
+        type: data.types[0].type.name,
         sprite: data.sprites.other['official-artwork'].front_default,
       };
     }),

@@ -65,7 +65,7 @@ import { preloadImages } from '../utils/preloadImages';
 
 function App() {
   const [score, setScore] = useState(0);
-  const [bestScore, setbestScore] = useState(
+  const [bestScore, setBestScore] = useState(
     Number(localStorage.getItem('bestScore')) || 0,
   );
   const [deck, setDeck] = useState([]);
