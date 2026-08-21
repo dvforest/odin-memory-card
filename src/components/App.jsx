@@ -62,6 +62,7 @@ APP
 import { useEffect, useState } from 'react';
 import { fetchPokemonDeck } from '../utils/fetchPokemonDeck';
 import { preloadImages } from '../utils/preloadImages';
+import CardSection from './CardSection.jsx';
 
 function App() {
   const [score, setScore] = useState(0);
@@ -69,7 +70,7 @@ function App() {
     Number(localStorage.getItem('bestScore')) || 0,
   );
   const [deck, setDeck] = useState([]);
-  const [gameState, setGameState] = useState('loading');
+  const [gameState, setGameState] = useState('isLoading');
 
   useEffect(() => {
     localStorage.setItem('bestScore', bestScore);
@@ -84,6 +85,10 @@ function App() {
     }
     loadGame();
   }, []);
+
+  function handleCardClick(id) {
+    //card click logic
+  }
 
   return (
     <div>
@@ -102,11 +107,10 @@ function App() {
             <div>{score}</div>
             <div>{bestScore}</div>
           </div>
-          <div
-            className="card-section"
-            score={score}
+          <CardSection
             deck={deck}
-          ></div>
+            onCardClick={handleCardClick}
+          />
         </main>
       )}
     </div>

@@ -1,5 +1,27 @@
-function CardSection(score, deck, onLoaded) {
-  return <div className="card-section">Card Section</div>;
+import '../styles/card.css';
+
+function CardSection({ deck, onCardClick }) {
+  console.log('Type of deck:', typeof deck, deck);
+  return (
+    <div className="card-section">
+      {deck.map((card) => {
+        return (
+          <div
+            className={`card-container ${card.type}`}
+            onClick={() => onCardClick(card.id)}
+            key={card.id}
+          >
+            <img
+              src={card.sprite}
+              alt={card.name}
+              className="pokemon-sprite"
+            />
+            <div className="pokemon-name">{card.name}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default CardSection;

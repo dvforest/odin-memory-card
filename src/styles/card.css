@@ -1,0 +1,12 @@
+* {
+  --electric: #ddb51b;
+  --water: #52c3d8;
+}
+
+.card-container.electric {
+  background-color: var(--electric);
+}
+
+.card-container.water {
+  background-color: var(--water);
+}
