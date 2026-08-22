@@ -1,15 +1,22 @@
+import { useEffect } from 'react';
 import '../styles/card.css';
 
 function CardSection({ deck, onCardClick }) {
-  console.log('Type of deck:', typeof deck, deck);
+  useEffect(() => {
+    document.querySelectorAll('.card-item').forEach((el) => {
+      el.classList.add('revealed');
+    });
+  }, []);
+
   return (
     <div className="card-section">
-      {deck.map((card) => {
+      {deck.map((card, index) => {
         return (
           <div
-            className={`card-item ${card.type}`}
-            onClick={() => onCardClick(card.id)}
             key={card.id}
+            className={`card-item ${card.type}`}
+            style={{ '--delay': `${index * 60}ms` }}
+            onClick={() => onCardClick(card.id)}
           >
             <img
               src={card.sprite}

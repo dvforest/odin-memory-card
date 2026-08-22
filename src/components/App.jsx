@@ -63,6 +63,7 @@ import { useEffect, useState } from 'react';
 import { fetchPokemonDeck } from '../utils/fetchPokemonDeck';
 import { preloadImages } from '../utils/preloadImages';
 import CardSection from './CardSection.jsx';
+import '../styles/app.css';
 
 function App() {
   const [score, setScore] = useState(0);
@@ -91,7 +92,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app">
       <header>Pokemon Memory Game</header>
 
       {gameState === 'isLoading' && (

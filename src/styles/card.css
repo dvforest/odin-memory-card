@@ -3,35 +3,54 @@
   --water: #52c3d8;
   --grass: #53b586;
   --normal: #d8e4c3;
-  --ghost: #87348d;
-  --rock: #7e7789;
-  --fighting: #946f4e;
-  --fire: #db7f31;
+  --ghost: #b480b8;
+  --rock: #9e95ab;
+  --fighting: #c8957a;
+  --fire: #ea9750;
 }
 
 .card-section {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
 }
 
 .pokemon-sprite {
   width: 80%;
   height: 80%;
   object-fit: cover;
+  filter: drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.2));
+  transform: scale(1);
+  transition: transform 0.2s ease-out;
+}
+
+.pokemon-sprite:hover {
+  transform: scale(1.04);
 }
 
 .card-item {
   aspect-ratio: 1;
-  transform: scale(0.9);
-  transition: transform 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border-radius: 50px;
+  transform-style: preserve-3d;
+  transform: perspective(600px) rotateY(-90deg);
+  transition: transform 0.5s ease-out;
+  transition-delay: var(--delay, 0ms);
+}
+
+.card-item.revealed {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.card-item.flipped {
+  transform: perspective(600px) rotateY(180deg);
 }
 
 .card-item:hover {
-  transform: scale(1);
+  filter: brightness(1.1);
 }
 
 .card-item.electric {
