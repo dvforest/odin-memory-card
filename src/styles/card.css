@@ -9,34 +9,59 @@
   --fire: #db7f31;
 }
 
-.card-container.electric {
+.card-section {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.pokemon-sprite {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.card-item {
+  aspect-ratio: 1;
+  transform: scale(0.9);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-item:hover {
+  transform: scale(1);
+}
+
+.card-item.electric {
   background-color: var(--electric);
 }
 
-.card-container.water {
+.card-item.water {
   background-color: var(--water);
 }
 
-.card-container.fire {
+.card-item.fire {
   background-color: var(--fire);
 }
 
-.card-container.grass {
+.card-item.grass {
   background-color: var(--grass);
 }
 
-.card-container.normal {
+.card-item.normal {
   background-color: var(--normal);
 }
 
-.card-container.ghost {
+.card-item.ghost {
   background-color: var(--ghost);
 }
 
-.card-container.fighting {
+.card-item.fighting {
   background-color: var(--fighting);
 }
 
-.card-container.rock {
+.card-item.rock {
   background-color: var(--rock);
 }

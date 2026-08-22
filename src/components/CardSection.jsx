@@ -7,7 +7,7 @@ function CardSection({ deck, onCardClick }) {
       {deck.map((card) => {
         return (
           <div
-            className={`card-container ${card.type}`}
+            className={`card-item ${card.type}`}
             onClick={() => onCardClick(card.id)}
             key={card.id}
           >
@@ -16,7 +16,6 @@ function CardSection({ deck, onCardClick }) {
               alt={card.name}
               className="pokemon-sprite"
             />
-            <div className="pokemon-name">{card.name}</div>
           </div>
         );
       })}
