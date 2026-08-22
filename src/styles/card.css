@@ -1,6 +1,12 @@
 * {
   --electric: #ddb51b;
   --water: #52c3d8;
+  --grass: #53b586;
+  --normal: #d8e4c3;
+  --ghost: #87348d;
+  --rock: #7e7789;
+  --fighting: #946f4e;
+  --fire: #db7f31;
 }
 
 .card-container.electric {
@@ -9,4 +15,28 @@
 
 .card-container.water {
   background-color: var(--water);
+}
+
+.card-container.fire {
+  background-color: var(--fire);
+}
+
+.card-container.grass {
+  background-color: var(--grass);
+}
+
+.card-container.normal {
+  background-color: var(--normal);
+}
+
+.card-container.ghost {
+  background-color: var(--ghost);
+}
+
+.card-container.fighting {
+  background-color: var(--fighting);
+}
+
+.card-container.rock {
+  background-color: var(--rock);
 }
