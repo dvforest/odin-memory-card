@@ -82,10 +82,27 @@ function App() {
       const deckData = await fetchPokemonDeck();
       await preloadImages(deckData);
       setDeck(deckData);
+      handleShuffle(deckData);
       setGameState('isPlaying');
     }
     loadGame();
   }, []);
+
+  function handleShuffle() {
+    setDeck((prev) => shuffle(prev));
+  }
+
+  function shuffle(array) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy.map((card) => ({
+      ...card,
+      instanceKey: crypto.randomUUID(),
+    }));
+  }
 
   return (
     <div className="app">
@@ -104,7 +121,10 @@ function App() {
             <div>{score}</div>
             <div>{bestScore}</div>
           </div>
-          <CardSection deck={deck} />
+          <CardSection
+            deck={deck}
+            onShuffle={handleShuffle}
+          />
         </main>
       )}
     </div>
