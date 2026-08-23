@@ -87,10 +87,6 @@ function App() {
     loadGame();
   }, []);
 
-  function handleCardClick(id) {
-    //card click logic
-  }
-
   return (
     <div className="app">
       <header>Pokemon Memory Game</header>
@@ -108,10 +104,7 @@ function App() {
             <div>{score}</div>
             <div>{bestScore}</div>
           </div>
-          <CardSection
-            deck={deck}
-            onCardClick={handleCardClick}
-          />
+          <CardSection deck={deck} />
         </main>
       )}
     </div>

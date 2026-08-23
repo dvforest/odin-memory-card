@@ -39,11 +39,10 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-radius: 50px;
+  border-radius: 60px;
   transform-style: preserve-3d;
   transform: perspective(600px) rotateY(-90deg);
   transition: transform 0.5s ease-out;
-  transition-delay: var(--delay, 0ms);
 }
 
 .card-item.revealed {
@@ -51,7 +50,7 @@
 }
 
 .card-item.flipped {
-  transform: perspective(600px) rotateY(180deg);
+  transform: perspective(600px) rotateY(270deg);
 }
 
 .card-item:hover {
