@@ -3,7 +3,7 @@ import '../styles/card.css';
 import PokemonCard from './Card';
 import { useState } from 'react';
 
-function CardSection({ deck, onShuffle }) {
+function CardSection({ deck, onShuffle, onHandleScore }) {
   const [flipped, setFlipped] = useState({});
 
   useEffect(() => {
@@ -16,18 +16,23 @@ function CardSection({ deck, onShuffle }) {
     });
   }, [deck]);
 
-  function handleClick(key) {
+  function handleClick(card) {
+    const key = card.instanceKey;
+    const id = card.id;
+
     flipCard(key);
 
     setTimeout(() => {
       onShuffle();
     }, 250);
+
+    onHandleScore(id);
   }
 
-  function flipCard(key) {
+  function flipCard(instanceKey) {
     setFlipped((prev) => ({
       ...prev,
-      [key]: !prev[key],
+      [instanceKey]: !prev[instanceKey],
     }));
   }
 
@@ -39,7 +44,7 @@ function CardSection({ deck, onShuffle }) {
             key={card.instanceKey}
             card={card}
             flipped={flipped[card.instanceKey]}
-            onCardClick={() => handleClick(card.instanceKey)}
+            onCardClick={() => handleClick(card)}
           />
         );
       })}

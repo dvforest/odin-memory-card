@@ -71,6 +71,7 @@ function App() {
     Number(localStorage.getItem('bestScore')) || 0,
   );
   const [deck, setDeck] = useState([]);
+  const [clickedIds, setClickedIds] = useState([]);
   const [gameState, setGameState] = useState('isLoading');
 
   useEffect(() => {
@@ -90,6 +91,18 @@ function App() {
 
   function handleShuffle() {
     setDeck((prev) => shuffle(prev));
+  }
+
+  function handleScore(id) {
+    if (clickedIds.includes(id)) {
+      setClickedIds([]);
+      if (score > bestScore) setBestScore(score);
+      setScore(0);
+      return console.log('you lost');
+    }
+    setClickedIds((prev) => [...prev, id]);
+    setScore(score + 1);
+    console.log('continue');
   }
 
   function shuffle(array) {
@@ -118,12 +131,13 @@ function App() {
       {gameState === 'isPlaying' && (
         <main>
           <div className="score-section">
-            <div>{score}</div>
-            <div>{bestScore}</div>
+            <div>Score: {score}</div>
+            <div>Best: {bestScore}</div>
           </div>
           <CardSection
             deck={deck}
             onShuffle={handleShuffle}
+            onHandleScore={handleScore}
           />
         </main>
       )}
