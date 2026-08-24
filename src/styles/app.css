@@ -1,3 +1,35 @@
 .app {
   padding: 25px;
 }
+
+h1 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 2.2rem;
+  color: rgb(242, 214, 32);
+  -webkit-text-stroke: 2.5px #1466d2;
+  text-shadow: 2px 4px 5px rgba(103, 104, 110, 0.5);
+}
+
+h2 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.4rem;
+  color: rgb(152, 133, 133);
+}
+
+header {
+  margin-bottom: 5px;
+}
+
+.score-section {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(
+    to right,
+    rgba(243, 237, 237, 1),
+    rgba(255, 255, 255, 0)
+  );
+  padding: 8px;
+  border-radius: 8px;
+}

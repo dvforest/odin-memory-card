@@ -119,7 +119,9 @@ function App() {
 
   return (
     <div className="app">
-      <header>Pokemon Memory Game</header>
+      <header>
+        <h1>Pokemon Memory Game</h1>
+      </header>
 
       {gameState === 'isLoading' && (
         <div className="loading-container">
@@ -131,8 +133,8 @@ function App() {
       {gameState === 'isPlaying' && (
         <main>
           <div className="score-section">
-            <div>Score: {score}</div>
-            <div>Best: {bestScore}</div>
+            <h2>Score: {score}</h2>
+            <h2>Best: {bestScore}</h2>
           </div>
           <CardSection
             deck={deck}
